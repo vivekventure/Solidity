@@ -12,4 +12,4 @@ This repo consists of a variety of Solidity projects, including the following:
 5. MaticStaking.sol - Simple staking contract with an ERC20 rewards token where a user can stake either MATIC or stMATIC on Polygon and receive the rewards token while staked. Users can claim and then unstake either MATIC or stMATIC. Another building block baseline. 
 Deployed here: https://polygonscan.com/address/0xf5f5a73362dd5701743400ebed94608ab168773e, with rewards token (SOYLANA) address here: https://polygonscan.com/token/0x0bf5d9127aa2250c8fefe5d3baf047fe2e329f85
 
-6. BTCEscrow.sol - A bare bones escrow contract for <a href="https://twitter.com/VivekVentures/status/1636846054703263746?s=20">Balaji's bet</a>
+6. BTCEscrow.sol - A bare bones escrow contract for <a href="https://twitter.com/VivekVentures/status/1636846054703263746?s=20">Balaji's bet</a> where using a smart contract (instead of a trusted third party), Balaji and the Other Dude could deposit their collateral and programmatically claim victory rewards after the elapsed bet time (90 days). Uses the WBTC Chainlink price feed and WBTC as a proxy for BTC (since BTC does not have smart contracts).

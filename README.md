@@ -15,4 +15,4 @@ Deployed <a href="https://polygonscan.com/address/0xf5f5a73362dd5701743400ebed94
 6. <a href="https://github.com/vivekventure/Solidity/blob/main/BTCEscrow.sol">BTCEscrow.sol</a> - A bare bones escrow contract for <a href="https://twitter.com/VivekVentures/status/1636846054703263746?s=20">Balaji's bet</a> where using a smart contract (instead of a trusted third party), Balaji and the Other Dude could deposit their collateral and programmatically claim victory rewards after the elapsed bet time (90 days). Uses the WBTC Chainlink price feed and WBTC as a proxy for BTC (since BTC does not have smart contracts).
 
 7. <a href="https://github.com/vivekventure/Solidity/blob/main/Soulbound.sol">Soulbound.sol</a> - Initial proposed spec for a Soulbound token which inherits from ERC721 standard and will be immediately compatible with major NFT platforms and applications. Potential use cases of this Soulbound token spec: 
-thing 1
+<br><l>thing 1

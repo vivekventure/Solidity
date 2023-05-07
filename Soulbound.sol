@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import { ERC721 } from "solmate/tokens/ERC721.sol";
 
 contract Soulbound is ERC721 {    
-    address immutable owner;                // only owner can mint Soubound to a new address
+    address immutable owner;                // only owner can mint Soubound to a new address; later set this to a contract that accepts payment for minting
     uint public nftID;                      // tracks NFT ID
     mapping(address => uint) public ownerToID;    // maps NFT ID to owner address and sets 0 to be no NFT minted
     uint immutable MAX_SUPPLY_PER_OWNER = 1;          // only 1 Soulbound per address for this spec
@@ -15,9 +15,10 @@ contract Soulbound is ERC721 {
         nftID = 1;      // start at 1 so that 0 means no NFT minted
     }
 
+    // Mint and burn functions - only functionality for Soulbound
     function mint(address _to, string memory _uri) public {
         require(msg.sender == owner, "Only owner can mint Soubound to a new address");
-        require(balanceOf(_to) < MAX_SUPPLY_PER_OWNER, "Max supply per wallet");
+        require(balanceOf(_to) < MAX_SUPPLY_PER_OWNER, "Max supply per wallet exceeded");
         ownerToID[_to] = nftID;
         nftID++;
         _mint(_to, nftID-1);
@@ -30,6 +31,16 @@ contract Soulbound is ERC721 {
         ownerToID[msg.sender] = 0;
     }
 
+    // URI functions
+    function tokenURI(uint256 id) public view virtual override returns (string memory) {    
+        return _tokenURI[id];
+    }
+
+    function _setTokenURI(uint256 _nftId, string memory _uri) internal {
+        _tokenURI[_nftId] = _uri;
+    }
+
+    // Override functions to limit functionality to Soulbound
     function approve(address spender, uint256 id) public override {
         revert();
     }
@@ -48,13 +59,5 @@ contract Soulbound is ERC721 {
 
     function safeTransferFrom(address from, address to, uint256 id, bytes calldata data) public override {
         revert();
-    }
-
-    function tokenURI(uint256 id) public view virtual override returns (string memory) {    
-        return _tokenURI[id];
-    }
-
-    function _setTokenURI(uint256 _nftId, string memory _uri) internal {
-        _tokenURI[_nftId] = _uri;
     }
 }

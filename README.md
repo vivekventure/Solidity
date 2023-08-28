@@ -19,3 +19,5 @@ Deployed <a href="https://polygonscan.com/address/0xf5f5a73362dd5701743400ebed94
 8. <a href="https://github.com/vivekventure/Solidity/blob/main/IDEFI.sol">IDEFI.sol</a> - The IDEFI interface that simplifies DeFi interactions into one library. IDEFI aggregates popular interfaces used in DeFi - specifically ERC20, WETH, Uniswap v3, Uniswap v2, Curve, Lido, Aave v2, Chainlink price feeds. Additionally, the interface contains comments with relevant contract addresses and docs needed to call relevant DeFi functions.
 
 9. <a href="https://github.com/vivekventure/Solidity/blob/main/ETHSeller.sol">ETHSeller.sol</a> - Example DeFi interactions using the IDEFI.sol interface detailed above; sell ETH on Uniswap v3, Uniswap v2, execute a StableSwap on Curve, and convert ETH to stETH on curve. Building blocks for apps that abstract away DeFi interactions for mass adoption.
+
+10. <a href="https://github.com/vivekventure/Solidity/blob/main/TicTacToe.sol">TicTacToe.sol</a> - Simple brute forced (non-elegant/non-optimized) version of Tic Tac Toe to connect to NextJS front end and deploy on L2s as part of game development with in-game payments via crypto wallets.

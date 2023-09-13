@@ -1,23 +1,28 @@
 // SPDX-License-Identifier: UNLICENSED
+
 pragma solidity ^0.8.13;
 
 contract TicTacToe {
     bool public gameOn;
     bool public xTurn;  // X is player 1, O is player 2
-    uint8[9] public board;   // 0 is empty, 1 is X, 2 is O
+    uint[] public board;   // 0 is empty, 1 is X, 2 is O
     address public owner;
     address public xPlayer;
     address public oPlayer;
     address public winner;
     uint public pot;
 
+    event MadeMove(uint[] updatedBoard);
+
     constructor() {
         owner = msg.sender;
+        board = new uint[](9);
     }
-    
+
     function offerGame(address challenger) public payable {
         require(!gameOn);
         require(xPlayer == address(0));
+        require(challenger != msg.sender);    // can't play against yourself
         xPlayer = msg.sender;
         pot = msg.value;
         oPlayer = challenger;
@@ -42,7 +47,7 @@ contract TicTacToe {
         xTurn = true;
     }
 
-    function makeMove(uint8 move) public returns (uint8) {      // move is 0-8
+    function makeMove(uint8 move) public {      // move is 0-8
         require(gameOn);
         require(msg.sender == (xTurn ? xPlayer : oPlayer));
         require(move >= 0 && move < 9);
@@ -56,7 +61,7 @@ contract TicTacToe {
                 board[i] = 0;
             }
         }
-        return board[move];
+        emit MadeMove(board);       // redeploy after emitting whole array
     }
 
     function checkGameOver() internal returns (bool) { 
